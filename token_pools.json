@@ -1,0 +1,101 @@
+{
+    "tokens": ["+1","0","-1","-2","-3","-4","-5","-6","-8","Skull","Cultist",
+        "Tablet","Elder Thing","Elder Sign","Tentacle"],
+    "campaigns": [
+        {
+            "name": "Night of the Zealot",
+            "abbreviation": "notz",
+            "tokenPools": [
+                {
+                    "difficulty": "easy",
+                    "tokens": ["+1","+1","0","0","0","-1","-1","-1","-2","-2",
+                        "Skull","Skull","Cultist","Tablet","Tentacle",
+                        "Elder Sign"]
+                },
+                {
+                    "difficulty": "standard",
+                    "tokens": ["+1","0","0","-1","-1","-1","-2","-2","-3","-4",
+                        "Skull","Skull","Cultist","Tablet","Tentacle",
+                        "Elder Sign"]
+                },
+                {
+                    "difficulty": "hard",
+                    "tokens": ["0","0","0","-1","-1","-2","-2","-3","-3","-4",
+                        "-5","Skull","Skull","Cultist","Tablet","Tentacle",
+                        "Elder Sign"]
+                },
+                {
+                    "difficulty": "expert",
+                    "tokens": ["0","-1","-1","-2","-2","-3","-3","-4","-4","-5",
+                        "-6","-8","Skull","Skull","Cultist","Tablet","Tentacle",
+                        "Elder Sign"]
+                }
+            ]
+        },
+        {
+            "name": "The Dunwich Legacy",
+            "abbreviation": "tdl",
+            "tokenPools": [
+                {
+                    "difficulty": "easy",
+                    "tokens": ["+1","+1","0","0","0","-1","-1","-1","-2","-2",
+                        "Skull","Skull","Cultist","Tentacle","Elder Sign"]
+                },
+                {
+                    "difficulty": "standard",
+                    "tokens": ["+1","0","0","-1","-1","-1","-2","-2","-3","-4",
+                        "Skull","Skull","Cultist","Tentacle","Elder Sign"]
+                },
+                {
+                    "difficulty": "hard",
+                    "tokens": ["0","0","0","-1","-1","-2","-2","-3","-3","-4",
+                        "-5","Skull","Skull","Cultist","Tentacle","Elder Sign"]
+                },
+                {
+                    "difficulty": "expert",
+                    "tokens": ["0","-1","-1","-2","-2","-3","-3","-4","-4","-5",
+                        "-6","-8","Skull","Skull","Cultist","Tentacle",
+                        "Elder Sign"]
+                }
+            ]
+        },
+        {
+            "name": "Carnevale of Horrors",
+            "abbreviation": "coh",
+            "tokenPools": [
+                {
+                    "difficulty": "standard",
+                    "tokens": ["+1","0","0","0","-1","-1","-1","-2","-2","-3",
+                        "-4","-6","Skull","Skull","Skull","Cultist","Tablet",
+                        "Elder Thing","Tentacle","Elder Sign"]
+                },
+                {
+                    "difficulty": "hard",
+                    "tokens": ["+1","0","0","0","-1","-1","-3","-4","-5","-6",
+                        "-7","Skull","Skull","Skull","Cultist","Tablet",
+                        "Elder Thing","Tentacle","Elder Sign"]
+                }
+            ]
+        },
+        {
+            "name": "Curse of the Rougarou",
+            "abbreviation": "cotr",
+            "tokenPools": [
+                {
+                    "difficulty": "standard",
+                    "tokens": ["+1","+1","0","0","0","-1","-1","-1","-2","-2",
+                        "-3","-3","-4","-4","-5","-6","Skull","Skull","Cultist",
+                        "Cultist","Tablet","Elder Thing","Tentacle",
+                        "Elder Sign"]
+                },
+                {
+                    "difficulty": "hard",
+                    "tokens": ["+1","0","0","0","-1","-1","-1","-2","-2","-3",
+                        "-3","-4","-4","-5","-5","-6","-8","Skull","Skull",
+                        "Skull","Cultist","Cultist","Tablet","Elder Thing",
+                        "Tentacle","Elder Sign"]
+                }
+            ]
+        }
+    ]
+}

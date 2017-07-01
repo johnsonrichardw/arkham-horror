@@ -2,11 +2,30 @@
 
 import random
 import argparse
+import json
+
+def get_token_pool(token_pool_json,cam_abbv,difficulty):
+    """Take the token pool json object and search for the token pool specified
+    by the campaign abbreviation and difficulty"""
+    for camp in token_pool_json['campaigns']:
+        if camp['abbreviation'] == cam_abbv:
+            for camp_pools in camp['tokenPools']:
+                if camp_pools['difficulty'] == difficulty:
+                    return camp_pools['tokens']
+    #didn't find anything
+    raise ValueError('Unknown token set: ' + cam_abbv + ' ' + difficulty)
+
+
+#Open json file specifying campaign token pools
+f_tok_pool = open('token_pools.json',mode='r')
+token_pool = json.load(f_tok_pool)
+#Done with file pointer
+f_tok_pool.close()
 
 #List of known token types, used later to validate tokens added by command line
-tokens = ['+1','0','-1','-2','-3','-4','-5','-6','-8','Skull','Cultist','Tablet','Elder Thing','Elder Sign','Tentacle']
+tokens = token_pool['tokens']
 #List of supported campaigns/scenarios
-campaigns = ['notz','tdl','coh','cotr']
+campaigns = [x['abbreviation'] for x in token_pool['campaigns']]
 #List of supported difficulties
 difficulties = ['easy','standard','hard','expert']
 
@@ -17,30 +36,8 @@ parser.add_argument('difficulty',help='Which difficulty the scenario is being pl
 parser.add_argument('--tokens', nargs='+', help='Add additional tokens to token pool',choices=tokens)
 args = parser.parse_args()
 
-#Initialize our token pools indexed by 'campaign-difficulty'
-token_sets = {}
-#Night of the Zealot token pools
-token_sets['notz-easy'] = ['+1','+1','0','0','0','-1','-1','-1','-2','-2','Skull','Skull','Cultist','Tablet','Tentacle','Elder Sign']
-token_sets['notz-standard'] = ['+1','0','0','-1','-1','-1','-2','-2','-3','-4','Skull','Skull','Cultist','Tablet','Tentacle','Elder Sign']
-token_sets['notz-hard'] = ['0','0','0','-1','-1','-2','-2','-3','-3','-4','-5','Skull','Skull','Cultist','Tablet','Tentacle','Elder Sign']
-token_sets['notz-expert'] = ['0','-1','-1','-2','-2','-3','-3','-4','-4','-5','-6','-8','Skull','Skull','Cultist','Tablet','Tentacle','Elder Sign']
-#The Dunwich Legacy token pools
-token_sets['tdl-easy'] = ['+1','+1','0','0','0','-1','-1','-1','-2','-2','Skull','Skull','Cultist','Tentacle','Elder Sign']
-token_sets['tdl-standard'] = ['+1','0','0','-1','-1','-1','-2','-2','-3','-4','Skull','Skull','Cultist','Tentacle','Elder Sign']
-token_sets['tdl-hard'] = ['0','0','0','-1','-1','-2','-2','-3','-3','-4','-5','Skull','Skull','Cultist','Tentacle','Elder Sign']
-token_sets['tdl-expert'] = ['0','-1','-1','-2','-2','-3','-3','-4','-4','-5','-6','-8','Skull','Skull','Cultist','Tentacle','Elder Sign']
-#Carnevale of Horrors token pools
-token_sets['coh-standard'] = ['+1','0','0','0','-1','-1','-1','-2','-2','-3','-4','-6','Skull','Skull','Skull','Cultist','Tablet','Elder Thing','Tentacle','Elder Sign']
-token_sets['coh-hard'] = ['+1','0','0','0','-1','-1','-3','-4','-5','-6','-7','Skull','Skull','Skull','Cultist','Tablet','Elder Thing','Tentacle','Elder Sign']
-#Curse of the Rougarou
-token_sets['cotr-standard'] = ['+1','+1','0','0','0','-1','-1','-1','-2','-2','-3','-3','-4','-4','-5','-6','Skull','Skull','Cultist','Cultist','Tablet','Elder Thing','Tentacle','Elder Sign']
-token_sets['cotr-hard'] = ['+1','0','0','0','-1','-1','-1','-2','-2','-3','-3','-4','-4','-5','-5','-6','-8','Skull','Skull','Skull','Cultist','Cultist','Tablet','Elder Thing','Tentacle','Elder Sign']
-
 #Get token set to use
-set = args.campaign + '-' + args.difficulty
-if set not in token_sets.keys():
-    raise ValueError('Unknown token set: ' + set)
-token_list = token_sets[set]
+token_list = get_token_pool(token_pool,args.campaign,args.difficulty)
 
 #Add specified new tokens to set
 if args.tokens != None:
